@@ -1,0 +1,68 @@
+:root {
+  /* Sapphire & Electric Blue Palette */
+  --bg-primary: #020916;
+  --bg-secondary: #0a1628;
+  --bg-card: rgba(10, 22, 40, 0.75);
+  --bg-card-hover: rgba(16, 36, 64, 0.85);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  
+  /* Electric Blue & Cyan Accents */
+  --neon-blue: #0066ff;
+  --neon-cyan: #00f0ff;
+  --neon-sapphire: #0044ff;
+  --neon-ice: #e0f2fe;
+  
+  --accent-glow: 0 0 25px rgba(0, 240, 255, 0.4), 0 0 50px rgba(0, 102, 255, 0.3);
+  
+  --border: rgba(0, 240, 255, 0.25);
+  --border-hover: rgba(0, 240, 255, 0.65);
+
+  /* Typography */
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --container-max-width: 1200px;
+  --navbar-height: 76px;
+
+  /* Z-index */
+  --z-below: -1;
+  --z-default: 1;
+  --z-sticky: 40;
+  --z-fixed: 50;
+  --z-modal: 100;
+}

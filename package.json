@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-nawfel-zemouli",
+  "version": "1.0.0",
+  "description": "Portfolio professionnel de Nawfel Zemouli - Ingénieur en Systèmes d'Information",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["portfolio", "nawfel", "zemouli"],
+  "author": "Nawfel Zemouli",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.0.0"
+  }
+}

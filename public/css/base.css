@@ -1,4 +1,4 @@
-/* Reset & Base Styles */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -24,7 +24,6 @@ body {
   min-height: 100vh;
 }
 
-/* Canvas particle background */
 #cyber-canvas {
   position: fixed;
   top: 0;
@@ -39,7 +38,6 @@ body {
     linear-gradient(180deg, #050814 0%, #0c102b 100%);
 }
 
-/* Background Cyber Grid */
 body::after {
   content: '';
   position: fixed;
@@ -55,13 +53,11 @@ body::after {
   z-index: var(--z-below);
 }
 
-/* Selection */
 ::selection {
   background-color: var(--neon-cyan);
   color: #000000;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -77,7 +73,6 @@ body::after {
   box-shadow: 0 0 15px var(--neon-cyan);
 }
 
-/* Container */
 .container {
   width: 100%;
   max-width: var(--container-max-width);
@@ -90,7 +85,6 @@ body::after {
   position: relative;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 700;

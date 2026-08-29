@@ -1,6 +1,4 @@
-/* =============================================
-   HERO SECTION
-   ============================================= */
+
 .hero {
   min-height: 100vh;
   padding-top: var(--navbar-height);
@@ -80,9 +78,6 @@
   flex-wrap: wrap;
 }
 
-/* =============================================
-   GITHUB PROFILE CARD (right side of hero)
-   ============================================= */
 #github-profile-card {
   background: rgba(10, 22, 40, 0.8);
   border: 1px solid var(--border);
@@ -241,9 +236,6 @@
   filter: brightness(1.1);
 }
 
-/* =============================================
-   ABOUT / DESCRIPTION SECTION
-   ============================================= */
 .about {
   text-align: center;
 }
@@ -281,9 +273,6 @@
   margin-bottom: var(--spacing-lg);
 }
 
-/* =============================================
-   SKILLS SECTION
-   ============================================= */
 .skills {
   text-align: center;
 }
@@ -354,7 +343,6 @@
   color: var(--neon-cyan);
 }
 
-/* Badges */
 .skill-badge-container {
   display: flex;
   flex-wrap: wrap;
@@ -380,9 +368,6 @@
   transform: translateY(-2px);
 }
 
-/* =============================================
-   PROJECTS SECTION
-   ============================================= */
 .projects {
   text-align: center;
 }
@@ -402,9 +387,6 @@
   text-align: left;
 }
 
-/* =============================================
-   LET'S BUILD CTA SECTION
-   ============================================= */
 .build-cta {
   text-align: center;
   padding: var(--spacing-3xl) 0;
@@ -467,9 +449,6 @@
   flex-wrap: wrap;
 }
 
-/* =============================================
-   CONTACT FORM SECTION
-   ============================================= */
 .contact {
   text-align: center;
 }
@@ -551,9 +530,6 @@
   color: #f87171;
 }
 
-/* =============================================
-   FOOTER
-   ============================================= */
 .footer {
   background-color: rgba(2, 9, 22, 0.9);
   border-top: 1px solid var(--border);
@@ -602,9 +578,6 @@
   padding-top: var(--spacing-lg);
 }
 
-/* =============================================
-   RESPONSIVE DESIGN
-   ============================================= */
 @media (max-width: 1200px) {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);

@@ -1,5 +1,5 @@
 export function initAnimations() {
-  // Intersection Observer for scroll reveal animations
+  
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   
   if (revealElements.length > 0) {
@@ -7,8 +7,7 @@ export function initAnimations() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          // Optional: stop observing once revealed
-          // observer.unobserve(entry.target); 
+
         }
       });
     }, {
@@ -20,7 +19,6 @@ export function initAnimations() {
     revealElements.forEach(el => revealObserver.observe(el));
   }
 
-  // Typing animation for Hero
   const typingTextElement = document.getElementById('typing-text');
   if (typingTextElement) {
     const textToType = "Cybersecurity & Information Systems";

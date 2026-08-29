@@ -1,8 +1,5 @@
 const { body, validationResult } = require('express-validator');
 
-/**
- * Règles de validation pour le formulaire de contact
- */
 const contactValidation = [
   body('name')
     .trim()
@@ -23,9 +20,6 @@ const contactValidation = [
     .escape()
 ];
 
-/**
- * Middleware de gestion des erreurs de validation
- */
 const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

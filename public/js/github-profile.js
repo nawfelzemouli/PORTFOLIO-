@@ -1,7 +1,4 @@
-/**
- * GitHub Profile Card — Loads real profile from /api/github/profile
- * Nawfel Zemouli Portfolio
- */
+
 
 export async function initGitHubProfile() {
   const card = document.getElementById('github-profile-card');

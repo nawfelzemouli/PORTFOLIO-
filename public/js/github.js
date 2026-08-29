@@ -77,7 +77,6 @@ export async function initGitHub() {
       grid.appendChild(card);
     });
 
-    // Generate filters
     if (filtersContainer) {
       Array.from(languages).sort().forEach(lang => {
         const btn = document.createElement('button');
@@ -86,8 +85,7 @@ export async function initGitHub() {
         btn.textContent = lang;
         filtersContainer.appendChild(btn);
       });
-      
-      // Filter functionality
+
       const filterBtns = document.querySelectorAll('.filter-btn');
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {

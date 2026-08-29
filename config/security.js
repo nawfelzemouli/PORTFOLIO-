@@ -1,10 +1,6 @@
 const helmet = require('helmet');
 const cors = require('cors');
 
-/**
- * Configuration de Helmet avec une CSP (Content Security Policy) adaptée
- * Autorise les polices Google et les ressources locales
- */
 const configureHelmet = () => {
   return helmet({
     contentSecurityPolicy: {
@@ -21,24 +17,18 @@ const configureHelmet = () => {
   });
 };
 
-/**
- * Configuration CORS
- * Autorise localhost en développement
- */
 const configureCors = () => {
   return cors({
     origin: (origin, callback) => {
-      // Autoriser les requêtes sans origine (comme les navigateurs qui chargent l'HTML)
+      
       if (!origin) return callback(null, true);
 
-      // En développement, on autorise localhost
       if (process.env.NODE_ENV !== 'production') {
         if (origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1')) {
           return callback(null, true);
         }
       }
 
-      // En production, on autorise dynamiquement le domaine de l'app ou n'importe quel sous-domaine railway
       const isRailway = origin.endsWith('.railway.app');
       const isCustomAllowed = process.env.ALLOWED_ORIGIN && origin === process.env.ALLOWED_ORIGIN;
 
@@ -46,7 +36,6 @@ const configureCors = () => {
         return callback(null, true);
       }
 
-      // Par défaut, bloquer mais de manière propre pour le CORS
       callback(new Error('CORS: origine non autorisée'));
     },
     optionsSuccessStatus: 200

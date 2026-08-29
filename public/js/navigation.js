@@ -5,7 +5,6 @@ export function initNavigation() {
   const hamburger = document.querySelector('.hamburger');
   const navLinksContainer = document.querySelector('.nav-links');
 
-  // Navbar scroll effect
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
@@ -14,7 +13,6 @@ export function initNavigation() {
     }
   });
 
-  // Active section tracking with IntersectionObserver
   const observerOptions = {
     root: null,
     rootMargin: '-50% 0px -50% 0px',
@@ -38,7 +36,6 @@ export function initNavigation() {
     observer.observe(section);
   });
 
-  // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -48,22 +45,20 @@ export function initNavigation() {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY;
-        // Adjust for navbar height
+        
         const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 72;
         
         window.scrollTo({
           top: offsetTop - navbarHeight,
           behavior: 'smooth'
         });
-        
-        // Close mobile menu if open
+
         hamburger.classList.remove('active');
         navLinksContainer.classList.remove('active');
       }
     });
   });
 
-  // Hamburger menu toggle
   if (hamburger) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
@@ -71,7 +66,6 @@ export function initNavigation() {
     });
   }
 
-  // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
     if (hamburger && navLinksContainer.classList.contains('active') && !navbar.contains(e.target)) {
       hamburger.classList.remove('active');

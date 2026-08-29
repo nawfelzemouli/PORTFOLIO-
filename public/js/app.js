@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initGitHubProfile();
   initNeuralCanvas();
 
-  // Footer year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });

@@ -1,7 +1,4 @@
-/**
- * Electric Blue Neural Network Background Canvas
- * Nawfel Zemouli Portfolio
- */
+
 
 export function initNeuralCanvas() {
   const canvas = document.getElementById('cyber-canvas');
@@ -45,7 +42,6 @@ export function initNeuralCanvas() {
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw & update particle nodes
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       p.x += p.vx;
@@ -54,7 +50,6 @@ export function initNeuralCanvas() {
       if (p.x < 0 || p.x > width) p.vx *= -1;
       if (p.y < 0 || p.y > height) p.vy *= -1;
 
-      // Draw glowing particle dot in Cyan/Blue
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fillStyle = '#00f0ff';
@@ -62,7 +57,6 @@ export function initNeuralCanvas() {
       ctx.shadowColor = '#00f0ff';
       ctx.fill();
 
-      // Connect nearby particle nodes with Electric Blue lines
       for (let j = i + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const dx = p.x - p2.x;
@@ -80,7 +74,6 @@ export function initNeuralCanvas() {
         }
       }
 
-      // Connect nodes to mouse position with Sapphire Blue glowing threads
       if (mouse.x !== null && mouse.y !== null) {
         const mdx = p.x - mouse.x;
         const mdy = p.y - mouse.y;

@@ -1,4 +1,4 @@
-/* Keyframes */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -80,7 +80,6 @@
   }
 }
 
-/* Utilities */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -125,7 +124,6 @@
   animation: typing-cursor 0.7s step-end infinite;
 }
 
-/* Particles */
 .particle {
   position: absolute;
   bottom: -100px;
@@ -152,7 +150,6 @@
 .particle:nth-child(14) { left: 25%; animation-duration: 28s; animation-delay: 3s; width: 3px; height: 3px; }
 .particle:nth-child(15) { left: 65%; animation-duration: 15s; animation-delay: 5s; }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

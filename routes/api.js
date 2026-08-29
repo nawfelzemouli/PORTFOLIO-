@@ -4,22 +4,17 @@ const { githubLimiter, contactLimiter } = require('../middleware/rateLimiter');
 const { contactValidation, handleValidationErrors } = require('../middleware/validator');
 const { fetchGitHubRepos } = require('../utils/github');
 
-// Cache simple pour le profil GitHub
 let profileCache = null;
 let profileCacheTime = 0;
-const PROFILE_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const PROFILE_CACHE_TTL = 5 * 60 * 1000; 
 
-/**
- * Route GET /api/github/profile
- * Récupère le profil GitHub de l'utilisateur
- */
 router.get('/github/profile', githubLimiter, async (req, res) => {
   const username = process.env.GITHUB_USERNAME || 'nawfelzemouli';
   
   const fallbackProfile = {
     name: "Nawfel Zemouli",
     login: username,
-    avatar_url: `https://github.com/${username}.png`, // URL d'avatar publique sans clé API
+    avatar_url: `https://github.com/${username}.png`, 
     bio: "Computer Science Student with a strong interest in Information Systems and Cybersecurity.",
     location: "Algeria",
     public_repos: 8,
@@ -34,7 +29,6 @@ router.get('/github/profile', githubLimiter, async (req, res) => {
       return res.json(profileCache);
     }
 
-    // Préparer les headers, inclure un token si présent
     const headers = { 'User-Agent': 'portfolio-app' };
     if (process.env.GITHUB_TOKEN) {
       headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
@@ -67,10 +61,6 @@ router.get('/github/profile', githubLimiter, async (req, res) => {
   }
 });
 
-/**
- * Route GET /api/github/repos
- * Récupère les dépôts GitHub de l'utilisateur
- */
 router.get('/github/repos', githubLimiter, async (req, res) => {
   const username = process.env.GITHUB_USERNAME || 'nawfelzemouli';
   
@@ -116,15 +106,9 @@ router.get('/github/repos', githubLimiter, async (req, res) => {
   }
 });
 
-/**
- * Route POST /api/contact
- * Gère l'envoi de messages depuis le formulaire de contact
- */
 router.post('/contact', contactLimiter, contactValidation, handleValidationErrors, (req, res) => {
   const { name, email, message } = req.body;
-  
-  // Pour le moment, on affiche simplement le message dans la console
-  // Facile d'ajouter l'envoi d'email via Nodemailer ou un service tiers plus tard
+
   console.log('--- Nouveau message de contact ---');
   console.log(`De: ${name} <${email}>`);
   console.log(`Message: \n${message}`);

@@ -53,7 +53,7 @@ app.use((err, req, res, next) => {
 });
 
 // Démarrage du serveur
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`[SERVEUR] Serveur démarré en mode ${process.env.NODE_ENV || 'development'}`);
   console.log(`[SERVEUR] Écoute sur le port ${PORT}`);
 });

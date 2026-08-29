@@ -26,17 +26,27 @@ const configureHelmet = () => {
  * Autorise localhost en développement
  */
 const configureCors = () => {
-  const allowedOrigins = process.env.NODE_ENV === 'production'
-    ? [process.env.ALLOWED_ORIGIN].filter(Boolean)
-    : ['http://localhost:3000', 'http://127.0.0.1:3000'];
-
   return cors({
     origin: (origin, callback) => {
-      // Autoriser les requêtes sans origin (ex: appels directs, health checks)
+      // Autoriser les requêtes sans origine (comme les navigateurs qui chargent l'HTML)
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      // En développement, tout autoriser si pas de ALLOWED_ORIGIN configuré
-      if (process.env.NODE_ENV !== 'production') return callback(null, true);
+
+      // En développement, on autorise localhost
+      if (process.env.NODE_ENV !== 'production') {
+        if (origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1')) {
+          return callback(null, true);
+        }
+      }
+
+      // En production, on autorise dynamiquement le domaine de l'app ou n'importe quel sous-domaine railway
+      const isRailway = origin.endsWith('.railway.app');
+      const isCustomAllowed = process.env.ALLOWED_ORIGIN && origin === process.env.ALLOWED_ORIGIN;
+
+      if (isRailway || isCustomAllowed) {
+        return callback(null, true);
+      }
+
+      // Par défaut, bloquer mais de manière propre pour le CORS
       callback(new Error('CORS: origine non autorisée'));
     },
     optionsSuccessStatus: 200

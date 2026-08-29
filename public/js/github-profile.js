@@ -9,6 +9,7 @@ export async function initGitHubProfile() {
 
   try {
     const res = await fetch('/api/github/profile');
+    if (!res.ok) throw new Error('API failed');
     const profile = await res.json();
 
     card.innerHTML = `

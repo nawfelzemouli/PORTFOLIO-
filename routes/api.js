@@ -14,22 +14,38 @@ const PROFILE_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
  * Récupère le profil GitHub de l'utilisateur
  */
 router.get('/github/profile', githubLimiter, async (req, res) => {
-  try {
-    const username = process.env.GITHUB_USERNAME;
-    if (!username) {
-      return res.status(500).json({ error: 'GITHUB_USERNAME non configuré' });
-    }
+  const username = process.env.GITHUB_USERNAME || 'nawfelzemouli';
+  
+  const fallbackProfile = {
+    name: "Nawfel Zemouli",
+    login: username,
+    avatar_url: `https://github.com/${username}.png`, // URL d'avatar publique sans clé API
+    bio: "Computer Science Student with a strong interest in Information Systems and Cybersecurity.",
+    location: "Algeria",
+    public_repos: 8,
+    followers: 10,
+    following: 12,
+    html_url: `https://github.com/${username}`
+  };
 
+  try {
     const now = Date.now();
     if (profileCache && (now - profileCacheTime) < PROFILE_CACHE_TTL) {
       return res.json(profileCache);
     }
 
-    const response = await fetch(`https://api.github.com/users/${username}`, {
-      headers: { 'User-Agent': 'portfolio-app' }
-    });
+    // Préparer les headers, inclure un token si présent
+    const headers = { 'User-Agent': 'portfolio-app' };
+    if (process.env.GITHUB_TOKEN) {
+      headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+    }
 
-    if (!response.ok) throw new Error('GitHub API error');
+    const response = await fetch(`https://api.github.com/users/${username}`, { headers });
+
+    if (!response.ok) {
+      console.warn(`GitHub API profile returned ${response.status}. Using fallback profile.`);
+      return res.json(fallbackProfile);
+    }
 
     const data = await response.json();
     profileCache = {
@@ -46,7 +62,8 @@ router.get('/github/profile', githubLimiter, async (req, res) => {
     profileCacheTime = now;
     res.json(profileCache);
   } catch (error) {
-    res.status(500).json({ error: 'Impossible de récupérer le profil GitHub.' });
+    console.error('Error fetching GitHub profile:', error);
+    res.json(fallbackProfile);
   }
 });
 

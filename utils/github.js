@@ -23,7 +23,14 @@ const fetchGitHubRepos = async (username) => {
   }
 
   try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+    const headers = { 'User-Agent': 'portfolio-app' };
+    if (process.env.GITHUB_TOKEN) {
+      headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+    }
+
+    const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, {
+      headers
+    });
     
     if (!response.ok) {
       throw new Error(`Erreur API GitHub: ${response.status} ${response.statusText}`);

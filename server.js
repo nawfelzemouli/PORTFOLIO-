@@ -12,6 +12,9 @@ const pagesRoutes = require('./routes/pages');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Confiance au proxy (nécessaire sur Railway/Heroku pour le rate limiter et les IPs)
+app.set('trust proxy', 1);
+
 // Application des middlewares de sécurité
 app.use(configureHelmet());
 app.use(configureCors());

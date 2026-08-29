@@ -26,10 +26,19 @@ const configureHelmet = () => {
  * Autorise localhost en développement
  */
 const configureCors = () => {
+  const allowedOrigins = process.env.NODE_ENV === 'production'
+    ? [process.env.ALLOWED_ORIGIN].filter(Boolean)
+    : ['http://localhost:3000', 'http://127.0.0.1:3000'];
+
   return cors({
-    origin: process.env.NODE_ENV === 'production' 
-      ? false // Remplacez par votre domaine en production
-      : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: (origin, callback) => {
+      // Autoriser les requêtes sans origin (ex: appels directs, health checks)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      // En développement, tout autoriser si pas de ALLOWED_ORIGIN configuré
+      if (process.env.NODE_ENV !== 'production') return callback(null, true);
+      callback(new Error('CORS: origine non autorisée'));
+    },
     optionsSuccessStatus: 200
   });
 };

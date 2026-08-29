@@ -1,7 +1,29 @@
 export function initAnimations() {
+  // Intersection Observer for scroll reveal animations
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  
+  if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Optional: stop observing once revealed
+          // observer.unobserve(entry.target); 
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  }
+
+  // Typing animation for Hero
   const typingTextElement = document.getElementById('typing-text');
   if (typingTextElement) {
-    const textToType = "Computer Science Student";
+    const textToType = "Cybersecurity & Information Systems";
     let charIndex = 0;
     
     function typeOnce() {
